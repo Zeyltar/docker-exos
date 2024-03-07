@@ -33,7 +33,7 @@ app.post('/tasks', async (req, res) => {
   if (!description) {
     return res.status(400).json({ error: 'Bad Request' });
   }
-  
+
   try {
     const { rowCount } = await pgPool.query('INSERT INTO tasks(description) VALUES($1)', [description]);
     if (rowCount > 0) {

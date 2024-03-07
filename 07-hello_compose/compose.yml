@@ -1,0 +1,26 @@
+services:
+  back:
+    build: ./back
+    env_file:
+      ./back/.env
+    ports:
+      - "3021:4000"
+    networks:
+      - appnetwork
+  front:
+    build: ./front
+    ports:
+      - "8080:80"
+    networks:
+      - appnetwork
+  db:
+    build: ./pgdata
+    ports:
+      - "5432:5432"
+    networks:
+      - appnetwork
+
+networks:
+  appnetwork:
+    name: appnetwork
+    external: true # true parce que le réseau avait été déjà créé pendant les tests
